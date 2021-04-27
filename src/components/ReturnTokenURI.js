@@ -1532,19 +1532,23 @@ export default class ReturnTokenURI extends React.Component {
     return (
       <>
         {this.state.data.map((image) => (
-          <img src={image} width="150" height="150" />
+          <div class="col-md-3 text-center"><img class="rounded shadow" src={image}  height="200" /></div>
         ))}
-        <li>
-          You own the IDs:{" "}
-          {this.props.tokensOfOwner.map((ID) => (
-            <>{ID},</>
-          ))}
-        </li>
-        <li className="nav-item">
-          <input type="text" id="_tokenIDforSale" placeholder="NFT_ID" />
-          <input type="text" id="_price" placeholder="Price" />
-          <button onClick={putNFTForSale}>put NFT for Sale</button>
-        </li>
+        <div class="col-md-12">
+          <p class="pt-5">
+            You own the IDs:{" "}
+            {this.props.tokensOfOwner.map((ID) => (
+              <>{ID},</>
+            ))}
+          </p>
+          <div class="input-group">
+            <input type="text" id="_tokenIDforSale" class="form-control float-left" placeholder="NFT_ID" />
+            <input type="text" id="_price" class="form-control float-left"  placeholder="Price" />
+            <div class="input-group-append">
+              <button onClick={putNFTForSale} class="btn btn-primary">Put NFT for Sale</button>
+            </div>
+          </div>
+        </div>
       </>
     );
   }

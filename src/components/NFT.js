@@ -3,6 +3,7 @@ import Web3 from "web3";
 import InstallMetamask from "./InstallMetamask";
 import UnlockMetamask from "./UnlockMetamask";
 import ReturnTokenURI from "./ReturnTokenURI";
+import './NFT.css';
 
 async function approve() {
   const SporeAddress = "0x75e6fb313df2c9429457722e4adf89e2a9b39cff";
@@ -2586,6 +2587,8 @@ export default class NFT extends React.Component {
     const marketPlaceBuilder = [];
     for (let i = 0; i <= this.state.totalCharacters - 1; i++) {
       if (this.state.bazaar[i].price > 0) {
+        console.log("ok");
+        console.log(this.state.bazaar[i]);
         marketPlaceBuilder.push([i, this.state.bazaar[i].price / 10 ** 9]);
       }
     }
@@ -2608,193 +2611,166 @@ export default class NFT extends React.Component {
     }
 
     if (this.isWeb3) {
-      if (!this.isnetworkID) {
+      if (false ) {
         return (
           <div>
-            <UnlockMetamask message="Wrong Network!" />
+            <UnlockMetamask message="Wrong Network, please switch" />
           </div>
         );
       } else {
         return (
           <>
-            <div id="accordion">
-              <div class="card">
-                <div class="card-header" id="headingZero">
-                  <h5 class="mb-0">
-                    <button
-                      class="btn btn-link"
-                      data-toggle="collapse"
-                      data-target="#collapseZero"
-                      aria-expanded="true"
-                      aria-controls="collapseZero"
-                    >
-                      NFT version 1: Vision, Pricing & Fair Launch
-                    </button>
-                  </h5>
-                </div>
+          <div className='container information py-2'>
+            <div className='row pb-5 py-2'>
+              <div className='col-lg-12'>
+                <h2 className='feature pb-2 text-center'>
+                  <span>NFT version 1</span> : Vision, Pricing & Fair Launch
+                </h2>
+                <h3 class="text-center pb-2">Welcome to out first generation of NFTs</h3>
+                <div class="row">
+                  <div class="col-lg-4 col-sm-12">
+                    <div class="box-rounded">
+                    <h4>Objective</h4>
+                    <p>The stepping stone in our road to decentralized governance.                      
+                      Burn an additional 1.328% of the totalsupply.
+                      Equivalent of 1328t (1.328e15) SPORE.
+                      </p>
+                      <ul>
+                        <li>First 4 NFTs: 1t each </li>
+                        <li>Next 8 NFTs: 3.5t each </li>
+                        <li>Next 12 NFTs: 7t each </li>
+                        <li>Next 24 NFTs: 14t each </li>
+                        <li>Next 12 NFTs: 21t each </li>
+                        <li>Next 8 NFTs: 28t each </li>
+                        <li>Last 4 NFTs: 100t each </li>
+                      </ul>
+                      <p class='pt-4'>
+                        This first generation of NFTs have a special meaning :
+                        they will be used for setting up a system of
+                        off-chain/on-chain governance over the next deployments
+                        using hashed signatures.</p>
+                        
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-12">
+                    <div class="box-rounded">
+                    <h4>Fair Launch</h4>
+                    <p>After the public announcement, a timelock will be
+                        activated allowing 24 hours to start buying the NFTs. All
+                        SPORE used to mint the NFTs will go to the BURN address.</p>
 
-                <div
-                  id="collapseZero"
-                  class="collapse show"
-                  aria-labelledby="headingZero"
-                  data-parent="#accordion"
-                >
-                  <div class="card-body">
-                    <h5>Welcome to out first generation of NFTs!</h5>
-                    The stepping stone in our road to decentralized governance.
-                    <br />
-                    <b>Objective:</b> Burn an additional 1.328% of the total
-                    supply.
-                    <br />
-                    Equivalent of 1328t (1.328e15) SPORE.
-                    <li>First 4 NFTs: 1t each </li>
-                    <li>Next 8 NFTs: 3.5t each </li>
-                    <li>Next 12 NFTs: 7t each </li>
-                    <li>Next 24 NFTs: 14t each </li>
-                    <li>Next 12 NFTs: 21t each </li>
-                    <li>Next 8 NFTs: 28t each </li>
-                    <li>Last 4 NFTs: 100t each </li>
-                    <div>
-                      This first generation of NFTs have a special meaning.
-                      <br />
-                      They will be used for setting up a system of
-                      off-chain/on-chain governance over the next deployments
-                      using hashed signatures.
-                      <br />
-                      <br />
-                      <h5>Fair Launch</h5>
-                      After the public announcement, a timelock will be
-                      activated allowing 24 hours to start buying the NFTs. All
-                      SPORE used to mint the NFTs will go to the BURN address.{" "}
-                      <b> There is no "DEV" fund.</b> The NFTs can be traded at
-                      our marketplace using AVAX for settlement. A small SPORE
-                      tax will be burnt every time anyone buys an NFT from the
-                      Marketplace (0.25t SPORE).
-                      <br />
-                      <br />
-                      <h5>Art Curation</h5>
-                      100% of the pieces have been made by community
-                      contribution.
+                      <p>
+                        <b class="important">There is no "DEV" fund.</b> The NFTs can be traded at
+                        our marketplace using AVAX for settlement.</p>
+                        <p>A small SPORE
+                        tax will be burnt every time anyone buys an NFT from the
+                        Marketplace (0.25t SPORE).</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-12">
+                    <div class="box-rounded">
+                      <h4>Art Curation</h4>
+                      <p>100% of the pieces have been made by community contribution.</p>
+                      <p>Here an non exhaustive list about our artists (many thanks to them):</p>
+                      <ul>
+                        <li>Artist A : <i class="fab fa-twitter"></i> @artistA</li>
+                        <li>Artist B : <i class="fab fa-twitter"></i> @artistB</li>
+                        <li>Artist C : <i class="fab fa-twitter"></i> @artistC</li>
+                        <li>Artist D : <i class="fab fa-twitter"></i> @artistD</li>
+                        <li>Artist E : <i class="fab fa-twitter"></i> @artistE</li>
+                      </ul>
                     </div>
                   </div>
                 </div>
+                
               </div>
-              <div class="card">
-                <div class="card-header" id="headingOne">
-                  <h5 class="mb-0">
-                    <button
-                      class="btn btn-link"
-                      data-toggle="collapse"
-                      data-target="#collapseOne"
-                      aria-expanded="true"
-                      aria-controls="collapseOne"
-                    >
-                      Claim!
-                    </button>
-                  </h5>
-                </div>
-
-                <div
-                  id="collapseOne"
-                  class="collapse show"
-                  aria-labelledby="headingOne"
-                  data-parent="#accordion"
-                >
-                  <div class="card-body">
-                    <input
-                      type="text"
-                      id="_approveFee"
-                      value="1000000000000000000000"
-                    />
-                    <button onClick={approve}>Approve</button>
-                    <br />
-                    <b>*Note: </b>Values in wei. Default 100t SPORE.
-                    <br />
-                    <div>
-                      <h6>
-                        {" "}
-                        NFTs left to claim: {this.state.totalSupplyLeft}{" "}
-                      </h6>
-                      <button onClick={claim}>Claim</button>
-                      <br />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header">
-                  <h5>
-                    <button
-                      class="btn btn-link collapsed"
-                      data-toggle="collapse"
-                      data-target="#collapseTwo"
-                      aria-expanded="false"
-                      aria-controls="collapseTwo"
-                    >
-                      Marketplace
-                    </button>
-                  </h5>
-                </div>
-                <div
-                  id="collapseTwo"
-                  class="collapse"
-                  aria-labelledby="headingTwo"
-                  data-parent="#accordion"
-                >
-                  <div class="card-body">
-                    {MarketplaceForSale}
-                    <br />
-                    <li className="nav-item">
-                      {" "}
+            </div>
+          </div>
+          <section className="bg-white" id="claim">
+            <div class="container py-5">
+              <div class="row py-5">
+                <div class="col-md-12">
+                  <div>
+                    <h2 class="text-center">Claim your NFT and spread the Spore !</h2>
+                    <p class="mb-1">
+                      <i>NFTs left to claim: {this.state.totalSupplyLeft}</i>
+                    </p>
+                    <div class="input-group mb-0">
                       <input
-                        type="text"
+                        type="number"
                         id="_approveFee"
-                        value="100000000000"
+                        value="1000000000000000000000"
+                        placeholder="1000000000000000000000"
+                        class="form-control"
                       />
-                      <button onClick={approve}>Approve Fee</button>
-                      <br />
-                      <b>*Note: </b>Values in wei. Only necessary if you havent
-                      approved before.
-                      <br />
-                      <input
-                        type="text"
-                        id="_tokenID"
-                        placeholder="NFT_ID (ex: 0)"
-                      />
-                      <button onClick={NFTbuy}>Buy NFT</button>
-                    </li>{" "}
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header" id="headingThree">
-                  <h5 class="mb-0">
-                    <button
-                      class="btn btn-link collapsed"
-                      data-toggle="collapse"
-                      data-target="#collapseThree"
-                      aria-expanded="false"
-                      aria-controls="collapseThree"
-                    >
-                      Your NFTs
-                    </button>
-                  </h5>
-                </div>
-
-                <div
-                  id="collapseThree"
-                  class="collapse"
-                  aria-labelledby="headingThree"
-                  data-parent="#accordion"
-                >
-                  <button id="connectButton">Connected</button>
-                  <div class="card-body">
-                    <li>Amont of NFTs you own: {this.state.balance} </li>
-                    {image}{" "}
+                      <div class="input-group-append">
+                        <button onClick={approve} class="btn btn-primary">Approve</button>
+                      </div>
+                    </div>
+                    <p class="text-muted">
+                      <b>*Note: </b>Values in wei. Default 100t SPORE.
+                    </p>
+                    <p class="text-center">
+                      <button onClick={claim} class="btn btn-secondary btn-lg px-5 py-2 text-uppercase">Claim your NFT</button>
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
+          </section>
+          <section className='bg-white-darker'>
+            <div class="container information py-5">
+              <div className='row py-5'>
+                <div className='col-md-12 text-center'>
+                  <h2 class="text-secondary-color">Marketplace</h2>
+                </div>
+                <div className='col-md-12'>
+                  <ul>
+                  {MarketplaceForSale}
+                  </ul>
+                  <br />
+                    {" "}
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        id="_approveFee"
+                        value="100000000000"
+                        class="form-control"
+                      />
+                       <div class="input-group-append">
+                        <button onClick={approve} class="btn btn-primary">Approve Fee</button>
+                      </div>
+                    </div>
+                    <p class="text-muted">
+                    <b>*Note: </b>Values in wei. Only necessary if you havent approved before.</p>
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        id="_tokenID"
+                        placeholder="NFT_ID (ex: 0)"
+                        class="form-control"
+                      />
+                      <div class="input-group-append">
+                        <button onClick={NFTbuy} class="btn btn-primary">Buy NFT</button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="bg-white">
+            <div class="container informations py-5">
+              <div class="row py-5">
+                <div class="col-md-12 text-center">
+                  <h2>Your NFTs <small class="text-muted font-italic">({this.state.balance})</small></h2>
+                </div>
+                <div class="row">
+                    {image}
+                </div>
+              </div>
+            </div>
+          </section>
+
           </>
         );
       }
