@@ -1,6 +1,6 @@
 import React from "react";
 
-function InstallMetamask() {
+const InstallMetamask = () => {
   return (
     <div className="modal is-active">
       <div className="modal-background"></div>
