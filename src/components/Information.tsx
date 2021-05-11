@@ -6,7 +6,7 @@ import React from 'react';
 import BurnedTokens from './BurnedTokens';
 import PriceToken from './PriceToken';
 //@ts-ignore
-import HowToBuyPDF from '../utils/how_to_buy.pdf';
+import HowToBuyPDF from '../assets/how_to_buy.pdf';
 import Contributors from './contributors';
 
 const Information = () => {
@@ -19,36 +19,36 @@ const Information = () => {
               What is <span>Spore Finance</span>
             </h2>
             <p className='lead'>
-              Spore Finance aims to create an ecosystem combining 
+              Spore Finance aims to create an ecosystem combining
             </p>
             <ul className='lead'>
-                <li><b>reflect tokens</b></li>
-                <li><b>algorithmically generated NFTs</b></li>
-                <li><b>next-gen NFT prediction market</b></li>
-            </ul>    
+              <li><b>reflect tokens</b></li>
+              <li><b>algorithmically generated NFTs</b></li>
+              <li><b>next-gen NFT prediction market</b></li>
+            </ul>
             <blockquote className='lead'>
               Meet Spore <img width="52px" height="52px" className='img-fluid' alt='Burn Token' src='spore_256.png' />
             </blockquote>
 
             <div className='lead larger'>
               <PriceToken></PriceToken>
-            </div>            
+            </div>
             <dl className='lead'>
-              
-              <dd>On Every <img height="30px" width="30px" 
+
+              <dd>On Every <img height="30px" width="30px"
                 src='avalanche-logo.png' alt='Avalanche Network'></img> Transaction</dd>
               <dt>3% of rewards are burnt</dt>
               <dt>3% are redistributed to hodlers</dt>
-              <dd>On Every <img height="30px" width="30px" src='binance-logo.png' alt="Binance Smart Chain"></img> Transaction</dd>              
+              <dd>On Every <img height="30px" width="30px" src='binance-logo.png' alt="Binance Smart Chain"></img> Transaction</dd>
               <dt>6% of rewards are burnt</dt>
             </dl>
 
             <p className='lead'>
-              Earn frictionless rewards while spore spreads!              
+              Earn frictionless rewards while spore spreads!
             </p>
             <p className='lead'>
               BSC users enjoy ever decreasing circulating supply.
-            </p>            
+            </p>
           </div>
           <div className='col-md-5 text-right'>
             <img className='img-fluid' alt='Mushroom' src='mushroom.png' />
@@ -137,7 +137,7 @@ const Information = () => {
             <div className='col-6'>
               <h5>Second layer blockchain development + Bridge (Binance Smart Chain)</h5>
               <p>
-              <i className='fa fa-check'></i> 6 April 2021
+                <i className='fa fa-check'></i> 6 April 2021
               </p>
             </div>
           </div>
@@ -183,15 +183,15 @@ const Information = () => {
 
           <div className='row align-items-center how-it-works d-flex'>
             <div className='col-2 text-center full-left d-inline-flex justify-content-center align-items-center'>
-                <div className='circle font-weight-bold'>5</div>
+              <div className='circle font-weight-bold'>5</div>
             </div>
-                <div className='col-6'>
-                  <h5>Algorithmically generated NFTs </h5>
-                  <p>
-                      In Progress <i className='fa fa-spinner'></i>
-                  </p>
-                </div>
-           </div>
+            <div className='col-6'>
+              <h5>Algorithmically generated NFTs </h5>
+              <p>
+                In Progress <i className='fa fa-spinner'></i>
+              </p>
+            </div>
+          </div>
 
 
           <div className='row timeline'>
@@ -272,7 +272,7 @@ const Information = () => {
           <div className='row py-4'>
             <div className='col-md-12 text-center'>
               <h2 className='feature'>Developers</h2>
-            </div>            
+            </div>
           </div>
           <div className='row'>
             <>
@@ -308,7 +308,7 @@ const Information = () => {
               className='btn btn-primary mx-1 mb-2'
             >
               BSC Token address
-            </a>            
+            </a>
             <a
               href='https://cchain.explorer.avax.network/tx/0x7df1694004dd6e994d31f76c3978718e017fe6e6112482866051aca7ab90caa6/token-transfers'
               target='_blank'

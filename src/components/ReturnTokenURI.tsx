@@ -1,7 +1,9 @@
 import React from "react";
 import Web3 from "web3";
 import { useState, useEffect } from 'react';
-import { SPORE_MARKET_ABI } from "../utils/abis";
+import { SPORE_MARKET_ABI } from "../utils/SporeAbis";
+import { ContractAddesses } from '../utils/addresses';
+import { getAccount } from '../utils/wallet';
 
 const win = window as any
 const docu = document as any
@@ -10,15 +12,12 @@ const putNFTForSale = async () => {
 
   const SporeMarketv1 = new win.web3.eth.Contract(
     SPORE_MARKET_ABI,
-    "0x9BAa8ADD7E43e1ff0Ed60E37782d03C50151c817"
+    ContractAddesses.AVAX_MARKET_FUJI
   );
   var _tokenIDforSale = docu.getElementById("_tokenIDforSale").value;
   var _price = docu.getElementById("_price").value;
 
-  var account = await win.web3.eth.getAccounts();
-  account = account[0];
-  console.log(account);
-
+  var account = await getAccount()
   try {
     await SporeMarketv1.methods
       .setTokenPrice(_tokenIDforSale, _price)
@@ -37,18 +36,17 @@ const ReturnTokenURI = (props: Props) => {
 
   useEffect(() => {
     async function startup() {
-      ;
       const SporeMarketv1 = new win.web3.eth.Contract(
         SPORE_MARKET_ABI,
-        "0x9BAa8ADD7E43e1ff0Ed60E37782d03C50151c817"
+        ContractAddesses.AVAX_MARKET_FUJI
       );
-      var account = await win.web3.eth.getAccounts();
-      account = account[0];
+      var account = await getAccount();
       console.log("returntokenURI component");
       console.log(props.tokensOfOwner);
       const promises = [];
 
       for (let i = 0; i < props.tokensOfOwner.length; i++) {
+        console.log("Getting URI for token:", i)
         const promisestokenURIs = await SporeMarketv1.methods
           .tokenURI(props.tokensOfOwner[i])
           .call();
@@ -57,14 +55,14 @@ const ReturnTokenURI = (props: Props) => {
       console.log("hi0");
 
       Promise.all(promises).then((values) => {
-        console.log(values);
+        console.log("VALUES:", values);
         setData(values)
       });
     }
     startup()
 
 
-  }, [])
+  }, [props.tokensOfOwner])
 
 
   return (

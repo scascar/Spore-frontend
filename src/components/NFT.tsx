@@ -4,31 +4,34 @@ import InstallMetamask from "./InstallMetamask";
 import UnlockMetamask from "./UnlockMetamask";
 import ReturnTokenURI from "./ReturnTokenURI";
 import './NFT.css';
-import { AVAX_SPORE_ABI, SPORE_MARKET_ABI } from '../utils/abis';
+import { AVAX_SPORE_ABI, SPORE_MARKET_ABI } from '../utils/SporeAbis';
 import { useState, useEffect } from 'react';
+import { ContractAddesses } from '../utils/addresses';
+import { approveContract } from '../utils/wallet';
 const win = window as any
 const docu = document as any
 
 async function approve() {
-  const SporeAddress = "0x75e6fb313df2c9429457722e4adf89e2a9b39cff";
-  const SporeNFTMarketaddress = "0x9BAa8ADD7E43e1ff0Ed60E37782d03C50151c817";
+  const SporeAddress = ContractAddesses.AVAX_SPORE_FUJI;
+  const SporeNFTMarketaddress = ContractAddesses.AVAX_MARKET_FUJI;
   const SporeContract = new win.web3.eth.Contract(AVAX_SPORE_ABI, SporeAddress);
   var account = await win.web3.eth.getAccounts();
   account = account[0];
   var amount = docu.getElementById("_approveFee").value;
-  try {
-    await SporeContract.methods
-      .approve(SporeNFTMarketaddress, amount)
-      .send({ from: account, gasPrice: 225000000000 });
-  } catch (error) {
-    alert(error);
-  }
+  // try {
+  //   await SporeContract.methods
+  //     .approve(SporeNFTMarketaddress, amount)
+  //     .send({ from: account, gasPrice: 225000000000 });
+  // } catch (error) {
+  //   alert(error);
+  // }
+  await approveContract(SporeAddress, AVAX_SPORE_ABI, SporeNFTMarketaddress, amount)
 }
 
 async function claim() {
   const SporeMarketv1 = new win.web3.eth.Contract(
     SPORE_MARKET_ABI,
-    "0x9BAa8ADD7E43e1ff0Ed60E37782d03C50151c817"
+    ContractAddesses.AVAX_MARKET_FUJI
   );
   var account = await win.web3.eth.getAccounts();
   account = account[0];
@@ -44,7 +47,7 @@ async function claim() {
 async function NFTbuy() {
   const SporeMarketv1 = new win.web3.eth.Contract(
     SPORE_MARKET_ABI,
-    "0x9BAa8ADD7E43e1ff0Ed60E37782d03C50151c817"
+    ContractAddesses.AVAX_MARKET_FUJI
   );
   var _tokenID = docu.getElementById("_tokenID").value;
   var account = await win.web3.eth.getAccounts();
@@ -98,7 +101,7 @@ const NFT = (props: any) => {
 
       const SporeMarketv1 = new win.web3.eth.Contract(
         SPORE_MARKET_ABI,
-        "0x9BAa8ADD7E43e1ff0Ed60E37782d03C50151c817"
+        ContractAddesses.AVAX_MARKET_FUJI
       );
 
       const accounts = await win.ethereum.request({ method: "eth_accounts" });
@@ -152,8 +155,12 @@ const NFT = (props: any) => {
       return (
         marketPlaceBuilder.map((item: any) => (
           <>
-            <li>ID: {item[0]}</li>
-            <li>Price: {item[1]} Avax</li>
+            <li>
+              <img className="rounded shadow" src={item} height="200" />
+              <p>ID: {item[0]}</p>
+              <p>Price: {item[1]} Avax</p>
+
+            </li>
           </>
         ))
       )
@@ -289,7 +296,7 @@ const NFT = (props: any) => {
                 </div>
                 <div className='col-md-12'>
                   <ul>
-                    {MarketPlaceForSale}
+                    {MarketPlaceForSale()}
                   </ul>
                   <br />
                   {" "}

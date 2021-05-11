@@ -5,7 +5,9 @@ import { ethers } from "ethers";
 
 import './BSCBridge.css';
 import { useEffect } from 'react';
-import { AVAX_SPORE_ABI, AVAX_BRIDGE_ABI, BSC_BRIDGE_ABI, BSC_SPORE_ABI } from '../utils/abis';
+import { AVAX_SPORE_ABI, AVAX_BRIDGE_ABI, BSC_BRIDGE_ABI, BSC_SPORE_ABI } from '../utils/SporeAbis';
+import { approveContract, getSporesInWallet } from '../utils/wallet';
+import { ContractAddesses } from '../utils/addresses';
 
 const win = window as any
 const docu = document as any
@@ -27,22 +29,8 @@ const getNetworkId = async () => {
 }
 
 const approve = async () => {
-    const SporeAddress = "0x6e7f5C0b9f4432716bDd0a77a3601291b9D9e985";
-    const AvaxBridgeAdress = "0x1aFCEF48379ECad5a6D790cE85ad1c87458C0f07";
-    const SporeContract = new win.web3.eth.Contract(
-        AVAX_SPORE_ABI,
-        SporeAddress
-    );
-    var account = await win.web3.eth.getAccounts();
-    account = account[0];
-    var amount = ethers.BigNumber.from(docu.getElementById("spores").value).mul(10 ** 9);
-    try {
-        await SporeContract.methods
-            .approve(AvaxBridgeAdress, amount)
-            .send({ from: account, gasPrice: 225000000000 });
-    } catch (error) {
-        alert(error);
-    }
+    await approveContract(ContractAddesses.AVAX_SPORE_MAINNET, AVAX_SPORE_ABI, ContractAddesses.AVAX_BRIDGE_MAINNET,
+        ethers.BigNumber.from(docu.getElementById("spores").value).mul(10 ** 9))
 }
 
 const swapFromAVAX = async () => {
@@ -85,48 +73,15 @@ const swapFromBSC = async () => {
 }
 
 
-const getSporeInWalletAVAX = async () => {
-    const SporeAddress = "0x6e7f5C0b9f4432716bDd0a77a3601291b9D9e985";
-    const SporeContract = new win.web3.eth.Contract(
-        AVAX_SPORE_ABI,
-        SporeAddress
-    );
-    var account = await win.web3.eth.getAccounts();
-    account = account[0];
-    try {
-        var spores = await SporeContract.methods.balanceOf(account).call();
-        console.log(spores)
-        return spores
-    } catch (error) {
-        console.log(error);
-        return 0
-    }
-}
-const getSporeInWalletBSC = async () => {
-    const SporeAddress = "0x33A3d962955A3862C8093D1273344719f03cA17C";
-    const SporeContract = new win.web3.eth.Contract(
-        BSC_SPORE_ABI,
-        SporeAddress
-    );
-    var account = await win.web3.eth.getAccounts();
-    account = account[0];
-    try {
-        var spores = await SporeContract.methods.balanceOf(account).call();
-        console.log(spores)
-        return spores
-    } catch (error) {
-        console.log(error);
-        return 0
-    }
-}
+
 
 const setMaxSporeAVAX = async () => {
-    var maxSpores = await getSporeInWalletAVAX();
+    var maxSpores = await getSporesInWallet(true);
     docu.getElementById("spores").value = maxSpores / 10 ** 9;
 }
 
 const setMaxSporeBSC = async () => {
-    var maxSpores = await getSporeInWalletBSC();
+    var maxSpores = await getSporesInWallet(false);
     docu.getElementById("spores2").value = maxSpores / 10 ** 9;
 }
 
@@ -145,8 +100,8 @@ const BSCBridge = () => {
             script.async = true;
             document.body.appendChild(script);
             connectMetaMask();
-            var numberOfSporeAVAX = await getSporeInWalletAVAX() / 10 ** 9;
-            var numberOfSporeBSC = await getSporeInWalletBSC() / 10 ** 9;
+            var numberOfSporeAVAX = await getSporesInWallet(true) / 10 ** 9;
+            var numberOfSporeBSC = await getSporesInWallet(false) / 10 ** 9;
             var nid = await getNetworkId();
             setNumberOfSporeAVAX(numberOfSporeAVAX)
             setNumberOfSporeBSC(numberOfSporeBSC)
