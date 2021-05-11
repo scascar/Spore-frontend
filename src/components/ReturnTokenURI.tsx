@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { SPORE_MARKET_ABI } from "../utils/SporeAbis";
 import { ContractAddesses } from '../utils/addresses';
 import { getAccount } from '../utils/wallet';
+import ReturnExternalURL from './ReturnExternalURL';
 
 const win = window as any
 const docu = document as any
@@ -67,9 +68,7 @@ const ReturnTokenURI = (props: Props) => {
 
   return (
     <>
-      {data.map((image) => (
-        <div key={image} className="col-md-3 text-center"><img className="rounded shadow" src={image} height="200" /></div>
-      ))}
+      <ReturnExternalURL jsonData={data} />
       <div className="col-md-12">
         <p className="pt-5">
           You own the IDs:{" "}

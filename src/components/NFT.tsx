@@ -67,7 +67,7 @@ async function NFTbuy() {
 const NFT = (props: any) => {
   const [bazaar, setBazaar] = useState(new Array<any>())
   const [tokenCounter, setTokenCounter] = useState(new Array<any>())
-  const [totalCharacters, setTotalCharacters] = useState(7)
+  const [totalCharacters, setTotalCharacters] = useState(72)
   const [totalSupplyLeft, setTotalSupplyLeft] = useState(0)
   const [tokensOfOwner, setTokensOfOwner] = useState(new Array<any>())
   const [balance, setBalance] = useState(0)
