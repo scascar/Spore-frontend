@@ -41,7 +41,6 @@ const ReturnTokenURI = (props: Props) => {
         SPORE_MARKET_ABI,
         ContractAddesses.AVAX_MARKET_FUJI
       );
-      var account = await getAccount();
       console.log("returntokenURI component");
       console.log(props.tokensOfOwner);
       const promises = [];

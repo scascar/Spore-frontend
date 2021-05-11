@@ -19,6 +19,7 @@ const ReturnExternalURL = (props: Props) => {
                 const res = await fetch(props.jsonData[i])
                     .then(response => { return response.json() })
                 console.log("resext");
+                console.log(res)
                 console.log(res.external_url);
                 returnData.push(res.external_url)
             }
@@ -27,7 +28,7 @@ const ReturnExternalURL = (props: Props) => {
             setData(returnData)
         }
         startup()
-    }, [])
+    }, [props.jsonData])
 
 
     return (

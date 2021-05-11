@@ -154,14 +154,12 @@ const NFT = (props: any) => {
     if (marketPlaceBuilder.length > 0) {
       return (
         marketPlaceBuilder.map((item: any) => (
-          <>
-            <li>
-              <img className="rounded shadow" src={item} height="200" />
-              <p>ID: {item[0]}</p>
-              <p>Price: {item[1]} Avax</p>
+          <li key={item}>
+            <img className="rounded shadow" src={item} height="200" />
+            <p>ID: {item[0]}</p>
+            <p>Price: {item[1]} Avax</p>
 
-            </li>
-          </>
+          </li>
         ))
       )
     }
